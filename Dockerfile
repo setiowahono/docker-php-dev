@@ -45,7 +45,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Ports
-EXPOSE 80 5000
+EXPOSE 80 5080
 
 # Start Apache2 on image start.
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
