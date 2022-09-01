@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Ruby
@@ -45,24 +45,10 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Ports
-EXPOSE 80 5080
+EXPOSE 80 80
 
 # Start Apache2 on image start.
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-
-# Purge old PHP
-RUN apt-get update
-RUN apt-get -y purge '^php8.*'
-RUN php -v
-
-# Install Git
-RUN apt-get install -y git
-RUN git --version
-
-# Install SASS & Compass
-RUN gem install sass
-RUN gem install compass
-RUN gem install css_parser
 
 # Install Composer
 RUN apt-get install -y php7.2-cli
@@ -71,16 +57,3 @@ RUN HASH="$(wget -q -O - https://composer.github.io/installer.sig)" && php -r "i
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
-
-# Install NodeJS & NPM
-RUN apt-get purge nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt -y update
-RUN apt install -y nodejs
-RUN nodejs -v
-RUN npm -v
-
-# Install Task Automation
-RUN apt-get install -y yarn
-RUN npm install -g grunt-cli
-RUN npm install gulp-cli -g
