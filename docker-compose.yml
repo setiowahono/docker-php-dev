@@ -15,7 +15,7 @@ services:
       - ./development:/var/www/html
     networks:
       - bridge
-  
+
   # MySQL
   mysql:
     platform: linux/x86_64
@@ -32,7 +32,7 @@ services:
       MYSQL_ROOT_PASSWORD: pass_dev
     networks:
       - bridge
-  
+
 # Volumes
 volumes:
   database:

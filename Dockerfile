@@ -31,7 +31,7 @@ RUN php -m
 RUN sed -i -e 's/^error_reporting\s*=.*/error_reporting = E_ALL/' /etc/php/7.2/apache2/php.ini
 RUN sed -i -e 's/^display_errors\s*=.*/display_errors = On/' /etc/php/7.2/apache2/php.ini
 RUN sed -i -e 's/^zlib.output_compression\s*=.*/zlib.output_compression = Off/' /etc/php/7.2/apache2/php.ini
-RUN sed -i -e 's/^zpost_max_size\s*=.*/post_max_size = 96M/' /etc/php/7.2/apache2/php.ini
+RUN sed -i -e 's/^post_max_size\s*=.*/post_max_size = 96M/' /etc/php/7.2/apache2/php.ini
 RUN sed -i -e 's/^upload_max_filesize\s*=.*/upload_max_filesize = 96M/' /etc/php/7.2/apache2/php.ini
 
 # Apache Config
